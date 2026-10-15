@@ -1,0 +1,154 @@
+﻿<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Twibbon Maker & Photo Editor Online</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <!-- Header / Navbar -->
+  <header class="app-header">
+    <div class="header-container">
+      <div class="logo">
+        <span class="logo-icon"><i class="fa-solid fa-wand-magic-sparkles"></i></span>
+        <div>
+          <h1>Twibbonize Studio</h1>
+          <p>Editor Twibbon & Pasang Foto Instan Tanpa Ribet</p>
+        </div>
+      </div>
+      <div class="header-actions">
+        <button id="btnResetAll" class="btn btn-secondary">
+          <i class="fa-solid fa-arrows-rotate"></i> Reset
+        </button>
+        <button id="btnDownload" class="btn btn-primary" disabled>
+          <i class="fa-solid fa-download"></i> Unduh Hasil (HD)
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <main class="main-wrapper">
+    <!-- Left Column: Controls & Uploads -->
+    <aside class="sidebar-panel">
+      <!-- Section 1: Frame Twibbon -->
+      <div class="card-section">
+        <h3 class="section-title"><i class="fa-solid fa-crop-simple"></i> 1. Pilih / Unggah Frame Twibbon</h3>
+        <p class="section-desc">Gunakan template bawaan atau unggah frame berformat PNG transparan Anda.</p>
+        
+        <div class="template-selector">
+          <div class="template-item active" data-src="assets/template-1.svg">
+            <span>✨ Event Blue</span>
+          </div>
+          <div class="template-item" data-src="assets/template-2.svg">
+            <span>🎓 Success Gold</span>
+          </div>
+        </div>
+
+        <div class="upload-box" id="dropFrame">
+          <i class="fa-solid fa-cloud-arrow-up"></i>
+          <span>Klik atau seret file Frame PNG di sini</span>
+          <input type="file" id="inputFrame" accept="image/png,image/svg+xml,image/webp">
+        </div>
+      </div>
+
+      <!-- Section 2: Foto Pengguna -->
+      <div class="card-section">
+        <h3 class="section-title"><i class="fa-regular fa-image"></i> 2. Unggah Foto Anda</h3>
+        <p class="section-desc">Pilih foto selfie, profil, atau potret Anda.</p>
+        
+        <div class="upload-box upload-photo" id="dropPhoto">
+          <i class="fa-solid fa-user-plus"></i>
+          <span>Pilih foto Anda (JPG/PNG)</span>
+          <input type="file" id="inputPhoto" accept="image/*">
+        </div>
+      </div>
+
+      <!-- Section 3: Pengaturan & Transformasi Foto -->
+      <div class="card-section" id="photoControls">
+        <h3 class="section-title"><i class="fa-solid fa-sliders"></i> 3. Atur & Posisikan Foto</h3>
+        
+        <!-- Zoom Slider -->
+        <div class="control-group">
+          <div class="control-label">
+            <span><i class="fa-solid fa-magnifying-glass-plus"></i> Skala (Zoom)</span>
+            <span id="zoomVal" class="badge">100%</span>
+          </div>
+          <input type="range" id="zoomRange" min="20" max="300" value="100" class="custom-slider">
+        </div>
+
+        <!-- Rotate Slider -->
+        <div class="control-group">
+          <div class="control-label">
+            <span><i class="fa-solid fa-rotate"></i> Rotasi</span>
+            <span id="rotateVal" class="badge">0°</span>
+          </div>
+          <input type="range" id="rotateRange" min="-180" max="180" value="0" class="custom-slider">
+        </div>
+
+        <!-- Quick Buttons: Flip, Center, Reset -->
+        <div class="button-grid">
+          <button id="btnFlipH" class="btn btn-outline" title="Flip Horizontal">
+            <i class="fa-solid fa-arrows-left-right"></i> Balik Horizontal
+          </button>
+          <button id="btnFlipV" class="btn btn-outline" title="Flip Vertikal">
+            <i class="fa-solid fa-arrows-up-down"></i> Balik Vertikal
+          </button>
+          <button id="btnCenterPhoto" class="btn btn-outline" title="Pusatkan Foto">
+            <i class="fa-solid fa-crosshairs"></i> Pusatkan
+          </button>
+          <button id="btnResetTransform" class="btn btn-outline" title="Reset Posisi">
+            <i class="fa-solid fa-arrow-rotate-left"></i> Reset Posisi
+          </button>
+        </div>
+
+        <!-- Filter Foto Opsional -->
+        <div class="filter-section">
+          <label class="control-label"><span><i class="fa-solid fa-wand-magic"></i> Efek Filter Foto:</span></label>
+          <div class="filter-chips">
+            <button class="chip active" data-filter="none">Normal</button>
+            <button class="chip" data-filter="bright">Cerah</button>
+            <button class="chip" data-filter="contrast">Kontras</button>
+            <button class="chip" data-filter="grayscale">B&amp;W</button>
+            <button class="chip" data-filter="warm">Warm</button>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Right Column: Canvas Preview Area -->
+    <section class="preview-area">
+      <div class="preview-header">
+        <div class="guide-badge">
+          <i class="fa-solid fa-hand-pointer"></i> Klik &amp; geser foto di dalam frame untuk menyesuaikan posisi
+        </div>
+        <div class="canvas-dimension-info">
+          Resolusi Canvas: <strong>1080 x 1080 px</strong>
+        </div>
+      </div>
+
+      <!-- Canvas Wrapper -->
+      <div class="canvas-container" id="canvasContainer">
+        <canvas id="mainCanvas" width="1080" height="1080"></canvas>
+        <div id="canvasEmptyState" class="empty-state">
+          <i class="fa-regular fa-image"></i>
+          <h4>Foto belum diunggah</h4>
+          <p>Silakan upload foto Anda di panel sebelah kiri untuk memulai.</p>
+        </div>
+      </div>
+
+      <!-- Quick Tips Bar -->
+      <div class="tips-card">
+        <p><i class="fa-solid fa-circle-info"></i> <strong>Tips:</strong> Anda juga bisa menggunakan roda mouse (scroll) di atas canvas untuk zoom in/out secara langsung.</p>
+      </div>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>

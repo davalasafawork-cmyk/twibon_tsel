@@ -1,0 +1,42 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" width="1000" height="1000">
+  <defs>
+    <mask id="hole-mask">
+      <rect width="1000" height="1000" fill="white" />
+      <circle cx="500" cy="460" r="320" fill="black" />
+    </mask>
+    <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#4f46e5" />
+      <stop offset="50%" stop-color="#7c3aed" />
+      <stop offset="100%" stop-color="#ec4899" />
+    </linearGradient>
+    <linearGradient id="grad2" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#06b6d4" />
+      <stop offset="100%" stop-color="#3b82f6" />
+    </linearGradient>
+  </defs>
+
+  <g mask="url(#hole-mask)">
+    <rect width="1000" height="1000" fill="#0f172a" fill-opacity="0.9" />
+    <circle cx="150" cy="150" r="240" fill="url(#grad1)" opacity="0.8" />
+    <circle cx="880" cy="200" r="190" fill="url(#grad2)" opacity="0.8" />
+    <circle cx="850" cy="850" r="280" fill="url(#grad1)" opacity="0.7" />
+    <circle cx="120" cy="880" r="220" fill="url(#grad2)" opacity="0.7" />
+    <rect x="0" y="820" width="1000" height="180" fill="#1e293b" />
+    <path d="M 0,820 Q 500,760 1000,820 L 1000,1000 L 0,1000 Z" fill="#0f172a" opacity="0.95" />
+  </g>
+
+  <circle cx="500" cy="460" r="326" fill="none" stroke="url(#grad1)" stroke-width="12" />
+  <circle cx="500" cy="460" r="338" fill="none" stroke="#ffffff" stroke-opacity="0.4" stroke-width="3" stroke-dasharray="10 10" />
+
+  <text x="500" y="105" font-family="system-ui, -apple-system, sans-serif" font-size="44" font-weight="800" fill="#ffffff" text-anchor="middle" letter-spacing="2">
+    ✨ SPECIAL EVENT 2026 ✨
+  </text>
+  <text x="500" y="148" font-family="system-ui, -apple-system, sans-serif" font-size="22" font-weight="500" fill="#94a3b8" text-anchor="middle">
+    Official Campaign Frame Template
+  </text>
+
+  <rect x="250" y="870" width="500" height="60" rx="30" fill="url(#grad1)" />
+  <text x="500" y="910" font-family="system-ui, -apple-system, sans-serif" font-size="24" font-weight="700" fill="#ffffff" text-anchor="middle">
+    #ProudToBePart | I AM READY!
+  </text>
+</svg>

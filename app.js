@@ -1,4 +1,4 @@
-﻿// State Manajemen Aplikasi
+// State Manajemen Aplikasi
 const state = {
   frameImg: null,
   photoImg: null,
@@ -41,8 +41,8 @@ const CANVAS_SIZE = 1080;
 
 // Inisialisasi
 window.addEventListener('DOMContentLoaded', () => {
-  // Load default template awal
-  loadFrameFromUrl('assets/template-1.svg');
+  // Load default template awal (Telkomsel Halo)
+  loadFrameFromUrl('assets/twibbon-telkomsel.png');
   setupEventListeners();
 });
 
